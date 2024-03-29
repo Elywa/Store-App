@@ -2,7 +2,7 @@ import 'package:store/helper/api.dart';
 import 'package:store/models/product_model.dart';
 
 class AddProductService {
-  Future<ProductModle> addProductService({
+  Future<ProductModel> addProductService({
     required String title,
     required String price,
     required String description,
@@ -18,6 +18,6 @@ class AddProductService {
       'category': category,
     });
 
-    return ProductModle.fromJson(data);
+    return ProductModel.fromJson(data);
   }
 }

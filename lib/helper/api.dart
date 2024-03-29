@@ -7,12 +7,16 @@ import 'package:http/http.dart' as http;
 
 class Api {
   Future<dynamic> get({required String url, @required String? token}) async {
-    Map<String, String> headers = {};
+    Map<String, String> headers = {
+      // 'Connection': 'keep-alive',
+      // 'Accept-Encoding': 'gzip, deflate, br'
+    };
     if (token != null) {
       headers.addAll({'authorization': 'Bearer $token'});
     }
-    http.Response response = await http.get(Uri.parse(url));
+    http.Response response = await http.get(Uri.parse(url), headers: headers);
     if (response.statusCode == 200) {
+      print(jsonDecode(response.body));
       return jsonDecode(response.body);
     } else {
       throw Exception(
@@ -46,16 +50,18 @@ class Api {
       @required String? token}) async {
     Map<String, String> headers = {};
     headers.addAll({
-      'Content-Type': 'application/x-www-form-urlencoded',
+       'Content-Type': 'application/x-www-form-urlencoded',
     });
     if (token != null) {
       headers.addAll({'authorization': 'Bearer $token'});
     }
+    print('URL is : $url');
 
     http.Response response =
-        await http.post(Uri.parse(url), body: body, headers: headers);
+        await http.put(Uri.parse(url), body: body, headers: headers);
     if (response.statusCode == 200) {
       //decoding and return type is Map<String , dynamic>
+      print('Body is : ${response.body}');
       return jsonDecode(response.body);
     } else {
       throw Exception(

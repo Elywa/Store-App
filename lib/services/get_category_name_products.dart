@@ -5,15 +5,15 @@ import 'package:store/helper/api.dart';
 import 'package:store/models/product_model.dart';
 
 class GetCategoryProductsService {
-  Future<List<ProductModle>> getCategoryProducts(
+  Future<List<ProductModel>> getCategoryProducts(
       {required String categoryName}) async {
     List<dynamic> data = await Api()
         .get(url: 'https://fakestoreapi.com/products/category/$categoryName');
 
-    List<ProductModle> productsList = [];
+    List<ProductModel> productsList = [];
     for (int i = 0; i < data.length; i++) {
       productsList.add(
-        ProductModle.fromJson(data[i]),
+        ProductModel.fromJson(data[i]),
       );
     }
 
