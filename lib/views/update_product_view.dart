@@ -33,7 +33,7 @@ class _UpdateProductViewState extends State<UpdateProductView> {
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.black),
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: const Color(0xffB7935F),
           centerTitle: true,
           title: const Text(
             'Update Product ',
@@ -93,8 +93,9 @@ class _UpdateProductViewState extends State<UpdateProductView> {
                   ontTap: () async {
                     isLoading = true;
                     setState(() {});
-                    await updateProductService(product);
+
                     try {
+                      await updateProductService(product);
                       print('Success');
                     } catch (e) {
                       print(e.toString());

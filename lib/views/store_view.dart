@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:store/models/product_model.dart';
 import 'package:store/services/get_all_products.dart';
+import 'package:store/views/add_product_details.dart';
 import 'package:store/views/cart_view.dart';
 import 'package:store/views/favourite_view.dart';
 import 'package:store/views/home_view.dart';
@@ -34,16 +35,27 @@ class _StoreViewState extends State<StoreView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      // floatingActionButton: CircleAvatar(
+      //     backgroundColor: Colors.green,
+      //     radius: 32,
+      //     child: IconButton(
+      //       onPressed: () {},
+      //       icon: Icon(
+      //         Icons.add,
+      //       ),
+      //     )),
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, AddProductView.id);
+              },
               icon: const Icon(
-                FontAwesomeIcons.cartPlus,
+                FontAwesomeIcons.plus,
                 color: Colors.black,
               ))
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xffB7935F),
         centerTitle: true,
         title: const Text(
           'New Trend',

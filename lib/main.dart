@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:store/views/add_product_details.dart';
 import 'package:store/views/cart_view.dart';
+import 'package:store/views/category_name_product.dart';
 import 'package:store/views/favourite_view.dart';
 import 'package:store/views/home_view.dart';
 import 'package:store/views/profile_view.dart';
@@ -27,6 +29,8 @@ class Base extends StatelessWidget {
         HomeView.id: (context) => HomeView(),
         ProfileView.id: (context) => ProfileView(),
         SearchView.id: (context) => SearchView(),
+        CategoryNameProducts.id: (context) => CategoryNameProducts(),
+        AddProductView.id: (context) => AddProductView(),
       },
       initialRoute: StoreView.id,
     );

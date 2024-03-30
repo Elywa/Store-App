@@ -50,22 +50,23 @@ class Api {
       @required String? token}) async {
     Map<String, String> headers = {};
     headers.addAll({
-       'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/x-www-form-urlencoded',
     });
     if (token != null) {
-      headers.addAll({'authorization': 'Bearer $token'});
+      headers.addAll({'Authorization': 'Bearer $token'});
     }
-    print('URL is : $url');
+    print('url = $url body = $body token = $token ');
 
     http.Response response =
         await http.put(Uri.parse(url), body: body, headers: headers);
     if (response.statusCode == 200) {
       //decoding and return type is Map<String , dynamic>
-      print('Body is : ${response.body}');
-      return jsonDecode(response.body);
+      Map<String, dynamic> data = jsonDecode(response.body);
+      print(data);
+      return data;
     } else {
       throw Exception(
-          "there was an error with status code which is : ${response.statusCode} and body is ${jsonDecode(response.body)}");
+          'there is a problem with status code ${response.statusCode} with body ${jsonDecode(response.body)}');
     }
   }
 }
