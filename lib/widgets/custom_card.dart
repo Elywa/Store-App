@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:store/models/product_model.dart';
 import 'package:store/views/update_product_view.dart';
 
@@ -49,10 +51,6 @@ class CustomCard extends StatelessWidget {
                           fontSize: 18,
                         ),
                       ),
-                      const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      )
                     ],
                   ),
                 ],
@@ -61,7 +59,39 @@ class CustomCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: -40,
+            bottom: 2,
+            right: 3,
+            child: IconButton(
+              onPressed: () {
+                if (!favourite.contains(model)) {
+                  favourite.add(model);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Added Succefully '),
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Already Added Before'),
+                    ),
+                  );
+                  return;
+                }
+                // favourite.add(model);
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //   SnackBar(
+                //     content: Text('Added'),
+                //   ),
+                // );
+              },
+              icon: const Icon(
+                Icons.favorite,
+                color: Colors.red,
+              ),
+            )),
+        Positioned(
+          top: -50,
           right: 30,
           child: Image.network(
             model.image,
@@ -73,3 +103,5 @@ class CustomCard extends StatelessWidget {
     );
   }
 }
+
+List<ProductModel> favourite = [];
